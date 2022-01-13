@@ -7,18 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-function registerNewUser(e) {
+function loginUser(e) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(e);
         e.preventDefault();
         let datos = {};
-        datos.name = document.querySelector("#Name").value;
-        datos.age = document.querySelector("#Age").value;
-        datos.email = document.querySelector('#Email').value;
-        datos.phone = document.querySelector('#Phone').value;
-        datos.password = document.querySelector('#Password').value;
+        datos.email = document.querySelector('#email-login').value;
+        datos.password = document.querySelector('#password-login').value;
         console.log(datos);
-        const request = yield fetch("api/usuarios", {
+        const request = yield fetch("api/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -26,7 +23,14 @@ function registerNewUser(e) {
             },
             body: JSON.stringify(datos)
         });
-        alert("The account has been successfully created");
+        const response = yield request.text();
+        if (response != "FAIL") {
+            localStorage.token = response;
+            window.location.replace('usuarios.html');
+        }
+        else {
+            alert('Not the right credentials. Please Try again.');
+        }
     });
 }
-export { registerNewUser };
+export { loginUser };

@@ -1,4 +1,3 @@
-// Call the dataTables jQuery plugin
 import { deleteUser } from './deleteUser.js';
 import { cargarUsuarios } from './loadUsers.js';
 import { loginUser } from './loginUser';
@@ -8,11 +7,11 @@ $(document).ready(function() {
 	cargarUsuarios();
 	$('#usuarios').DataTable();
 
-	let btn = document.querySelector('#btn-to-register');
+	let btn = document.querySelector('#btn-to-register')!
 	btn.addEventListener('click', registerNewUser);
 
 
-	let btn1 = document.querySelector('#btn-to-login');
+	let btn1 = document.querySelector('#btn-to-login')!
 	btn1.addEventListener('click', loginUser);
 });
 
@@ -24,4 +23,3 @@ function getHeaders () {
 	}
 	
 }
-

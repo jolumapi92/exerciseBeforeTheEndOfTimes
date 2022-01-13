@@ -1,4 +1,3 @@
-// Call the dataTables jQuery plugin
 import { deleteUser } from './deleteUser.js';
 import { cargarUsuarios } from './loadUsers.js';
 import { loginUser } from './loginUser';
@@ -24,4 +23,3 @@ function getHeaders () {
 	}
 	
 }
-
