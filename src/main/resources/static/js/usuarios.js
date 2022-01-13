@@ -8,10 +8,7 @@ $(document).ready(function() {
 async function cargarUsuarios() {
 	let content = await fetch('api/usuarios', {
 		method: "GET",
-		headers: {
-			'Accept': "application/json",
-			'Content-Type': 'application/json'
-		}
+		headers: getHeaders()
 	});
 	
 	let usuarios = await content.json();
@@ -34,8 +31,16 @@ async function cargarUsuarios() {
 						`;
 		wholeList += usuario;
 	});
-	
 	document.querySelector("#usuarios tbody").outerHTML = wholeList;
+}
+
+function getHeaders () {
+	return {
+				'Accept': "application/json",
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.token
+	}
+	
 }
 
 async function deleteUser (id) {
@@ -44,10 +49,7 @@ async function deleteUser (id) {
 	
 		let content = await fetch('api/usuario/' + id, {
 			method: "DELETE",
-			headers: {
-				'Accept': "application/json",
-				'Content-Type': 'application/json'
-			}
+			headers: getHeaders()
 		});
 		
 		window.location.reload()

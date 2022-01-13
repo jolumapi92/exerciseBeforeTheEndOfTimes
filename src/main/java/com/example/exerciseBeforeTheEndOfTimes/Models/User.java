@@ -2,17 +2,25 @@ package com.example.exerciseBeforeTheEndOfTimes.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "users")
 public class User {
 	@Id
+	@SequenceGenerator(name="seq",sequenceName="oracle_seq", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
 	@Column(name = "USERID")
 	private long id;
 	@Column(name = "USERNAME")
 	private String name;
+	@NumberFormat
 	@Column(name = "USERAGE")
 	private int age;
 	@Column(name = "USEREMAIL")
